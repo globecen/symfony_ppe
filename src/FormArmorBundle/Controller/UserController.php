@@ -21,9 +21,41 @@ use Symfony\Component\HttpFoundation\Request;
 
 class UserController extends Controller
 {
-    public function preinscriptionAction()
+    public function preinscriptionAction($page)
     {
-        return $this->render('FormArmorBundle:User:preinscription.html.twig');
+		if ($page < 1)
+		{
+			throw $this->createNotFoundException("La page ".$page." n'existe pas.");
+		}
+
+		// On peut fixer le nombre de lignes avec la ligne suivante :
+		// $nbParPage = 4;
+		// Mais bien sûr il est préférable de définir un paramètre dans "app\config\parameters.yml", et d'y accéder comme ceci :
+		$nbParPage = $this->container->getParameter('nb_par_page');
+		
+		
+		// On récupère l'objet Paginator
+		$manager = $this->getDoctrine()->getManager();
+		$rep = $manager->getRepository('FormArmorBundle:Formation');
+		$lesFormations = $rep->listeFormations($page, $nbParPage);
+		
+		// On calcule le nombre total de pages grâce au count($lesFormations) qui retourne le nombre total de formations
+		$nbPages = ceil(count($lesFormations) / $nbParPage);
+		
+		// Si la page n'existe pas, on retourne une erreur 404
+		if ($page > $nbPages)
+		{
+			throw $this->createNotFoundException("La page ".$page." n'existe pas.");
+		}
+		
+		// On donne toutes les informations nécessaires à la vue
+		return $this->render('FormArmorBundle:User:preinscription.html.twig', array(
+		  'lesFormations' => $lesFormations,
+		  'nbPages'     => $nbPages,
+		  'page'        => $page,
+		));
+		
+    
     }
     
      public function historiqueAction()
@@ -63,6 +95,15 @@ class UserController extends Controller
 		
 		// Si formulaire pas encore soumis ou pas valide (affichage du formulaire)
 		return $this->render('FormArmorBundle:User:connection.html.twig', array('form' => $form->createView()));
+    }
+    
+    public function sinscrireFormationAction($id, Request $request) // Affichage du formulaire de modification d'une formation
+    {
+    
+            // Récupération de la formation d'identifiant $id
+		$em = $this->getDoctrine()->getManager();
+		$rep = $em->getRepository('FormArmorBundle:Formation');
+		$formation = $rep->find($id);
     }
 }
 	

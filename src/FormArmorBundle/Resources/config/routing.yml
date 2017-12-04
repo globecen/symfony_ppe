@@ -91,8 +91,16 @@ form_armor_user:
     path:     /user
     defaults: { _controller: FormArmorBundle:User:authentif }
 form_armor_user_preinscription:
-    path:     /user/preinscription
-    defaults: { _controller: FormArmorBundle:User:preinscription }
+    path:     /user/preinscription/{page}
+    defaults:
+        _controller: FormArmorBundle:User:preinscription
+        page:     1
+    requirements:
+        page: \d*
 form_armor_user_historique:
     path:     /user/historique
     defaults: { _controller: FormArmorBundle:User:historique }
+form_armor_user_preinscription_sinscrire:
+    path:     /User/preinscription/sinscrire/{id}
+    defaults:
+        _controller: FormArmorBundle:User:sinscrireFormation
