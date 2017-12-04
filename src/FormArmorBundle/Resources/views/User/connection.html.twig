@@ -6,37 +6,37 @@
 	<div class="well">
 	  {{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
 
-	  {# Les erreurs générales du formulaire. #}
+	  {# Les erreurs gï¿½nï¿½rales du formulaire. #}
 	  {{ form_errors(form) }}
 
-	  {# Génération du controle de façon détaillée pour l'exemple #}
-		  {# Génération du label. #}
+	  {# Gï¿½nï¿½ration du controle de faï¿½on dï¿½taillï¿½e pour l'exemple #}
+		  {# Gï¿½nï¿½ration du label. #}
 		  {{ form_label(form.nom, "Nom : ", {'label_attr': {'class': 'form-label'}}) }}
-		  {# Affichage des erreurs pour ce champ précis. #}
+		  {# Affichage des erreurs pour ce champ prï¿½cis. #}
 		  {{ form_errors(form.nom) }}
-		  {# Génération de l'input. #}
+		  {# Gï¿½nï¿½ration de l'input. #}
 		  {{ form_widget(form.nom, {'attr': {'class': 'form-control'}}) }}
 	  
-	  {# Génération du controle de façon détaillée pour l'exemple #}
-		  {# Génération du label. #}
+	  {# Gï¿½nï¿½ration du controle de faï¿½on dï¿½taillï¿½e pour l'exemple #}
+		  {# Gï¿½nï¿½ration du label. #}
 		  {{ form_label(form.password, "Mot de passe : ", {'label_attr': {'class': 'form-label'}}) }}
-		  {# Affichage des erreurs pour ce champ précis. #}
+		  {# Affichage des erreurs pour ce champ prï¿½cis. #}
 		  {{ form_errors(form.password) }}
-		  {# Génération de l'input. #}
+		  {# Gï¿½nï¿½ration de l'input. #}
 		  {{ form_widget(form.password, {'attr': {'class': 'form-control'}}) }}
 	  <br/>
 	  {# Pour le bouton, pas de label ni d'erreur, on affiche juste le widget #}
 	  {{ form_widget(form.Envoyer, {'attr': {'class': 'btn btn-primary'}}) }}
 
-	  {# Génération automatique des champs pas encore écrits.
-		 Dans cet exemple, ce serait le champ CSRF (géré automatiquement par Symfony !)
-		 et tous les champs cachés (type « hidden »). #}
+	  {# Gï¿½nï¿½ration automatique des champs pas encore ï¿½crits.
+		 Dans cet exemple, ce serait le champ CSRF (gï¿½rï¿½ automatiquement par Symfony !)
+		 et tous les champs cachï¿½s (type ï¿½ hidden ï¿½). #}
 	  {{ form_rest(form) }}
 
 	  {# Fermeture de la balise <form> du formulaire HTML #}
 	  {{ form_end(form) }}
 	</div>
-	{# Affichage des messages éventuels. Par exemple après une insertion via un formulaire #}
+	{# Affichage des messages ï¿½ventuels. Par exemple aprï¿½s une insertion via un formulaire #}
 	{% for flash_message in app.session.flashBag.get('connection') %}
 		<div class="flash-notice">
 			<script>alert('{{ flash_message }}');</script>
@@ -44,7 +44,7 @@
 	{% endfor %}
 	<script>
 		$(function() {
-			$('#menu3').attr('class', 'active');
+			$('#menu4').attr('class', 'active');
 		});
 	</script>
 	

@@ -21,6 +21,15 @@ use Symfony\Component\HttpFoundation\Request;
 
 class UserController extends Controller
 {
+    public function preinscriptionAction()
+    {
+        return $this->render('FormArmorBundle:User:preinscription.html.twig');
+    }
+    
+     public function historiqueAction()
+    {
+        return $this->render('FormArmorBundle:User:historique.html.twig');
+    }
     public function authentifAction(Request $request) // Affichage du formulaire d'authentification
     {
         
